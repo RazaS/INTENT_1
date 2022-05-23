@@ -31,6 +31,7 @@ hbdf$PreHb<- as.numeric(hbdf$PreHb)
 
 hb_upper <- 97
 hb_lower <- 87
+thold=91.5
 
 hbdf <- hbdf %>% separate(PreHbDate, c("PreHbDate", "PreHbTime"), " ", fill="right")
 
@@ -222,11 +223,11 @@ library(ggplot2)
 library(rddtools)
 library(magrittr)
 
-thold=91.5
+
 
 rdd_data(y = hb_t_df$Transfusions, 
          x = hb_t_df$Hb, 
-         cutpoint = 80) %>% 
+         cutpoint = thold) %>% 
   rdd_reg_lm(slope = "same") %>% 
   summary()
 
